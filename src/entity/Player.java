@@ -46,53 +46,51 @@ public class Player extends Entity {
 
     public void setDefaultValues() {
 
-        this.gp.getClass();
-        this.worldX = 48 * 23;
-        this.gp.getClass();
-        this.worldY = 48 * 21;
-        this.speed = 4;
-        this.direction = "down";
+        worldX = gp.tileSize * 23;
+        worldY = gp.tileSize * 21;
+        speed = 4;
+        direction = "down";
 
     }
 
     public void getPlayerImage() {
         try {
 
-            up1 = ImageIO.read(this.getClass().getResourceAsStream("/player/boy_up_1.png"));
-            up2 = ImageIO.read(this.getClass().getResourceAsStream("/player/boy_up_2.png"));
-            down1 = ImageIO.read(this.getClass().getResourceAsStream("/player/boy_down_1.png"));
-            down2 = ImageIO.read(this.getClass().getResourceAsStream("/player/boy_down_2.png"));
-            left1 = ImageIO.read(this.getClass().getResourceAsStream("/player/boy_left_1.png"));
-            left2 = ImageIO.read(this.getClass().getResourceAsStream("/player/boy_left_2.png"));
-            right1 = ImageIO.read(this.getClass().getResourceAsStream("/player/boy_right_1.png"));
-            right2 = ImageIO.read(this.getClass().getResourceAsStream("/player/boy_right_2.png"));
+            up1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_1.png"));
+            up2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_up_2.png"));
+            down1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down_1.png"));
+            down2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_down_2.png"));
+            left1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_1.png"));
+            left2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_left_2.png"));
+            right1 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_1.png"));
+            right2 = ImageIO.read(getClass().getResourceAsStream("/player/boy_right_2.png"));
 
-        } catch (IOException var2) {
-            var2.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
 
     }
 
     public void update() {
 
-        if (this.keyH.upPressed || this.keyH.downPressed || this.keyH.leftPressed || this.keyH.rightPressed) {
-            if (this.keyH.upPressed) {
-                this.direction = "up";
+        if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
+            if (keyH.upPressed) {
+                direction = "up";
                 worldY -= speed;
-            } else if (this.keyH.downPressed) {
-                this.direction = "down";
+            } else if (keyH.downPressed) {
+                direction = "down";
                 worldY += speed;
-            } else if (this.keyH.leftPressed) {
-                this.direction = "left";
+            } else if (keyH.leftPressed) {
+                direction = "left";
                 worldX -= speed;
-            } else if (this.keyH.rightPressed) {
-                this.direction = "right";
+            } else if (keyH.rightPressed) {
+                direction = "right";
                 worldX += speed;
 
             }
 
-            this.collisionOn = false;
-            this.gp.cChecker.checkTile(this);
+            collisionOn = false;
+            gp.cChecker.checkTile(this);
 
 
             if (!collisionOn) {
@@ -177,48 +175,44 @@ public class Player extends Entity {
         switch(direction) {
             case "up":
 
-                    if (this.spriteNum == 1) {
+                    if (spriteNum == 1) {
                         image = up1;
                     }
 
-                    if (this.spriteNum == 2) {
+                    if (spriteNum == 2) {
                         image = up2;
                     }
                 break;
             case "down":
-                    if (this.spriteNum == 1) {
+                    if (spriteNum == 1) {
                         image = down1;
                     }
 
-                    if (this.spriteNum == 2) {
+                    if (spriteNum == 2) {
                         image = down2;
                     }
                 break;
             case "left":
-                    if (this.spriteNum == 1) {
+                    if (spriteNum == 1) {
                         image = left1;
                     }
 
-                    if (this.spriteNum == 2) {
+                    if (spriteNum == 2) {
                         image = left2;
                     }
                 break;
             case "right":
-                    if (this.spriteNum == 1) {
+                    if (spriteNum == 1) {
                         image = right1;
                     }
 
-                    if (this.spriteNum == 2) {
+                    if (spriteNum == 2) {
                         image = right2;
                     }
                     break;
         }
 
-        int var10002 = this.screenX;
-        int var10003 = this.screenY;
-        this.gp.getClass();
-        this.gp.getClass();
-        g2.drawImage(image, var10002, var10003, 48, 48, (ImageObserver)null);
+        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, (ImageObserver)null);
     }
 }
 

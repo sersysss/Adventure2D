@@ -25,21 +25,21 @@ public class SuperObject {
     }
 
     public void draw(Graphics2D g2, GamePanel gp) {
-        int screenX = this.worldX - gp.player.worldX + gp.player.screenX;
-        int screenY = this.worldY - gp.player.worldY + gp.player.screenY;
-        int var10000 = this.worldX;
+        int screenX = worldX - gp.player.worldX + gp.player.screenX;
+        int screenY = worldY - gp.player.worldY + gp.player.screenY;
+        int var10000 = worldX;
 
         if (var10000 + 48 > gp.player.worldX - gp.player.screenX) {
-            var10000 = this.worldX;
+            var10000 = worldX;
 
             if (var10000 - 48 < gp.player.worldX + gp.player.screenX) {
-                var10000 = this.worldY;
+                var10000 = worldY;
 
                 if (var10000 + 48 > gp.player.worldY - gp.player.screenY) {
-                    var10000 = this.worldY;
+                    var10000 = worldY;
 
                     if (var10000 - 48 < gp.player.worldY + gp.player.screenY) {
-                        BufferedImage var10001 = this.image;
+                        BufferedImage var10001 = image;
                         g2.drawImage(var10001, screenX, screenY, 48, 48, (ImageObserver)null);
                     }
                 }
