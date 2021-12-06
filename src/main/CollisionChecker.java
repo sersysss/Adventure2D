@@ -33,7 +33,7 @@ public class CollisionChecker {
                     entityTopRow = (entityTopWorldY - entity.speed) / gp.tileSize;
                     tileNum1 = gp.tileM.mapTileNum[entityLeftCol][entityTopRow];
                     tileNum2 = gp.tileM.mapTileNum[entityRightCol][entityTopRow];
-                    if (this.gp.tileM.tile[tileNum1].collision || this.gp.tileM.tile[tileNum2].collision) {
+                    if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision) {
                         entity.collisionOn = true;
                     }
                 break;
@@ -43,7 +43,7 @@ public class CollisionChecker {
                     entityBottomRow = (entityTopWorldY + entity.speed) / gp.tileSize;
                     tileNum1 = gp.tileM.mapTileNum[entityLeftCol][entityBottomRow];
                     tileNum2 = gp.tileM.mapTileNum[entityRightCol][entityBottomRow];
-                    if (this.gp.tileM.tile[tileNum1].collision || this.gp.tileM.tile[tileNum2].collision) {
+                    if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision) {
                         entity.collisionOn = true;
                     }
                 break;
@@ -53,7 +53,7 @@ public class CollisionChecker {
                     entityLeftCol = (entityLeftWorldX - entity.speed) / gp.tileSize;
                     tileNum1 = gp.tileM.mapTileNum[entityLeftCol][entityTopRow];
                     tileNum2 = gp.tileM.mapTileNum[entityLeftCol][entityBottomRow];
-                    if (this.gp.tileM.tile[tileNum1].collision || this.gp.tileM.tile[tileNum2].collision) {
+                    if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision) {
                         entity.collisionOn = true;
                     }
                 break;
@@ -63,7 +63,7 @@ public class CollisionChecker {
                     entityRightCol = (entityRightWorldX + entity.speed) / gp.tileSize;
                     tileNum1 = gp.tileM.mapTileNum[entityRightCol][entityTopRow];
                     tileNum2 = gp.tileM.mapTileNum[entityRightCol][entityBottomRow];
-                    if (this.gp.tileM.tile[tileNum1].collision || this.gp.tileM.tile[tileNum2].collision) {
+                    if (gp.tileM.tile[tileNum1].collision || gp.tileM.tile[tileNum2].collision) {
                         entity.collisionOn = true;
                     }
                break;
@@ -146,8 +146,8 @@ public class CollisionChecker {
 
                 entity.solidArea.x = entity.solidAreaDefaultX;
                 entity.solidArea.y = entity.solidAreaDefaultY;
-                this.gp.obj[i].solidArea.x = this.gp.obj[i].solidAreaDefaultX;
-                this.gp.obj[i].solidArea.y = this.gp.obj[i].solidAreaDefaultY;
+                gp.obj[i].solidArea.x = gp.obj[i].solidAreaDefaultX;
+                gp.obj[i].solidArea.y = gp.obj[i].solidAreaDefaultY;
             }
         }
 

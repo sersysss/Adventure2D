@@ -109,16 +109,22 @@ public class GamePanel extends JPanel implements Runnable {
 
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D)g;
+
+        // TILE
         tileM.draw(g2);
 
+        // OBJECT
         for (int i = 0; i < obj.length; i++) {
             if (obj[i] != null) {
                 obj[i].draw(g2, this);
             }
         }
-
+        // PLAYER
         player.draw(g2);
+
+        // UI
         ui.draw(g2);
+
         g2.dispose();
     }
 
