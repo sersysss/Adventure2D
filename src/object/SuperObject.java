@@ -10,9 +10,10 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import main.GamePanel;
+import main.UtilityTool;
 
 public class SuperObject {
-    String name;
+    public String name;
     public BufferedImage image;
     public boolean collision = false;
     public int worldX;
@@ -20,6 +21,7 @@ public class SuperObject {
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public int solidAreaDefaultX = 0;
     public int solidAreaDefaultY = 0;
+    UtilityTool uTool = new UtilityTool();
 
     public SuperObject() {
     }

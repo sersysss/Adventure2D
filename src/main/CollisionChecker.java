@@ -9,6 +9,7 @@ import entity.Entity;
 import java.awt.Rectangle;
 
 public class CollisionChecker {
+
     GamePanel gp;
 
     public CollisionChecker(GamePanel gp) {
@@ -16,6 +17,7 @@ public class CollisionChecker {
     }
 
     public void checkTile(Entity entity) {
+
         int entityLeftWorldX = entity.worldX + entity.solidArea.x;
         int entityRightWorldX = entity.worldX + entity.solidArea.x + entity.solidArea.width;
         int entityTopWorldY = entity.worldY + entity.solidArea.y;
@@ -29,6 +31,7 @@ public class CollisionChecker {
         int tileNum1, tileNum2;
 
         switch(entity.direction) {
+
             case "up":
 
                     entityTopRow = (entityTopWorldY - entity.speed) / gp.tileSize;
