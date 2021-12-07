@@ -12,8 +12,8 @@ import java.awt.image.ImageObserver;
 import main.GamePanel;
 
 public class SuperObject {
+    String name;
     public BufferedImage image;
-    public String name;
     public boolean collision = false;
     public int worldX;
     public int worldY;

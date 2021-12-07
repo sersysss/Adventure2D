@@ -79,7 +79,7 @@ public class TileManager {
                     String[] numbers = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
                     mapTileNum[col][row] = num;
-                    ++col;
+                    col++;
                 }
                 if (col == gp.maxWorldCol) {
                     col = 0;
@@ -117,11 +117,11 @@ public class TileManager {
                 g2.drawImage(tile[tileNum].image, screenX, screenY, gp.tileSize, gp.tileSize, (ImageObserver)null);
             }
 
-            ++worldCol;
+            worldCol++;
 
             if (worldCol == gp.maxWorldCol) {
                 worldCol = 0;
-                ++worldRow;
+                worldRow++;
             }
         }
 

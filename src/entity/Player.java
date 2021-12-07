@@ -21,8 +21,6 @@ public class Player extends Entity {
     public final int screenX;
     public final int screenY;
 
-    boolean bootsOn = false;
-    int bootsCounter = 0;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
@@ -88,11 +86,14 @@ public class Player extends Entity {
                 worldX += speed;
 
             }
-
+            // check tile's collision
             collisionOn = false;
             gp.cChecker.checkTile(this);
 
+            // check object's collision
+            int objIndex = gp.cChecker.checkObject(this, true);
 
+            // if collision is false, player can move
             if (!collisionOn) {
 
                 switch(direction) {
@@ -170,7 +171,6 @@ public class Player extends Entity {
     public void draw(Graphics2D g2) {
 
         BufferedImage image = null;
-        String direction = "";
 
         switch(direction) {
             case "up":
@@ -212,7 +212,7 @@ public class Player extends Entity {
                     break;
         }
 
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, (ImageObserver)null);
+        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
     }
 }
 
