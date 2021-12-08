@@ -43,6 +43,7 @@ public class UI {
         g2.setFont(arial_40);
         g2.setColor(Color.white);
 
+        // PLAY STATE
         if (gp.gameState == gp.playState) {
             // do playState stuff later
             if (gameFinished) {
@@ -100,8 +101,14 @@ public class UI {
                 }
             }
         }
+        // PAUSE STATE
         if (gp.gameState == gp.pauseState) {
             drawPauseScreen();
+        }
+
+        // DIALOGUE STATE
+        if (gp.gameState == gp.dialogueState) {
+            drawDialogueScreen();
         }
 
 
@@ -115,6 +122,25 @@ public class UI {
 
         g2.drawString(text, x, y);
     }
+    public void drawDialogueScreen() {
+
+        // WINDOW
+        int x = gp.tileSize * 2;
+        int y = gp.tileSize / 2;
+        int width = gp.screenWidth - (gp.tileSize * 4);
+        int height = gp.tileSize * 5;
+
+        drawSubWindow(x, y, width, height);
+
+    }
+    public void drawSubWindow(int x, int y, int width, int height) {
+
+        Color c = new Color(0, 0, 0);
+        g2.setColor(c);
+        g2.fillRoundRect(x, y, width, height, 35, 35);
+
+    }
+
     public int getXforCenteredText(String text) {
         int length = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         int x = gp.screenWidth/2 - length/2;

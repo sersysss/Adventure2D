@@ -93,21 +93,18 @@ public class Player extends Entity {
             int objIndex = gp.cChecker.checkObject(this, true);
             pickUpObject(objIndex);
 
+            // check npc's collision
+            int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+            interactNPC(npcIndex);
+
             // if collision is false, player can move
             if (!collisionOn) {
 
                 switch (direction) {
-                    case "up":
-                        worldY -= speed;
-                        break;
-                    case "down":
-                        worldY += speed;
-                        break;
-                    case "left":
-                        worldX -= speed;
-                        break;
-                    case "right":
-                        worldX += speed;
+                    case "up": worldY -= speed; break;
+                    case "down": worldY += speed; break;
+                    case "left": worldX -= speed; break;
+                    case "right": worldX += speed; break;
                 }
             }
 
@@ -161,8 +158,14 @@ public class Player extends Entity {
         }
     }
 
+    public void interactNPC(int i) {
+        if (i != 999) {
 
-        public void draw(Graphics2D g2) {
+            gp.gameState = gp.dialogueState;
+        }
+    }
+
+    public void draw(Graphics2D g2) {
 
             BufferedImage image = null;
 
