@@ -3,6 +3,8 @@ package main;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
+import java.io.IOException;
+import java.io.InputStream;
 import java.text.DecimalFormat;
 import object.OBJ_Key;
 
@@ -10,8 +12,7 @@ public class UI {
 
     GamePanel gp;
     Graphics2D g2;
-    Font arial_40;
-    Font arial_80B;
+    Font purisaB;
     BufferedImage keyImage;
     public boolean messageOn = false;
     public String message = "";
@@ -25,8 +26,16 @@ public class UI {
     public UI(GamePanel gp) {
 
         this.gp = gp;
-        arial_40 = new Font("Arial", 0, 40);
-        arial_80B = new Font("Arial", 1, 80);
+
+        try {
+            InputStream is = getClass().getResourceAsStream("/font/Purisa Bold.ttf");
+            purisaB = Font.createFont(Font.TRUETYPE_FONT, is);
+
+        } catch (FontFormatException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
@@ -39,7 +48,8 @@ public class UI {
     public void draw(Graphics2D g2) {
 
         this.g2 = g2;
-        g2.setFont(arial_40);
+        g2.setFont(purisaB);
+        g2.setRenderingHint(RenderingHints.KEY_TEXT_ANTIALIASING, RenderingHints.VALUE_TEXT_ANTIALIAS_ON);
         g2.setColor(Color.white);
 
         // PLAY STATE
@@ -47,7 +57,7 @@ public class UI {
             // do playState stuff later
             if (gameFinished) {
 
-                g2.setFont(arial_40);
+                g2.setFont(purisaB);
                 g2.setColor(Color.white);
                 int textLength;
                 int x;
@@ -66,7 +76,7 @@ public class UI {
                 g2.drawString(text, x, y);
 
 
-                g2.setFont(this.arial_80B);
+                g2.setFont(this.purisaB);
                 g2.setColor(Color.yellow);
                 text = "Congratulations!";
                 textLength = (int) g2.getFontMetrics().getStringBounds(text, g2).getWidth();
@@ -77,7 +87,7 @@ public class UI {
                 gp.gameThread = null;
             } else {
 
-                g2.setFont(this.arial_40);
+                g2.setFont(this.purisaB);
                 g2.setColor(Color.white);
                 g2.drawImage(keyImage, gp.tileSize/2, gp.tileSize/2, gp.tileSize, gp.tileSize, (ImageObserver)null);
 
@@ -132,10 +142,14 @@ public class UI {
 
         drawSubWindow(x, y, width, height);
 
-        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 28F));
         x += gp.tileSize;
         y += gp.tileSize;
-        g2.drawString(currentDialogue, x, y);
+
+        for (String line : currentDialogue.split("\n")) {
+            g2.drawString(line, x, y);
+            y += 40;
+        }
 
     }
     public void drawSubWindow(int x, int y, int width, int height) {
