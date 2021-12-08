@@ -18,7 +18,6 @@ import tile.Tile;
 
 public class Player extends Entity {
 
-    GamePanel gp;
     KeyHandler keyH;
 
     public final int screenX;
@@ -27,7 +26,8 @@ public class Player extends Entity {
     int hasKey = 0;
 
     public Player(GamePanel gp, KeyHandler keyH) {
-        this.gp = gp;
+
+        super(gp);
         this.keyH = keyH;
 
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
@@ -57,31 +57,15 @@ public class Player extends Entity {
 
     public void getPlayerImage() {
 
-        up1 = setup("boy_up_1");
-        up2 = setup("boy_up_2");
-        down1 = setup("boy_down_1");
-        down2 = setup("boy_down_2");
-        left1 = setup("boy_left_1");
-        left2 = setup("boy_left_2");
-        right1 = setup("boy_right_1");
-        right2 = setup("boy_right_2");
+        up1 = setup("/player/boy_up_1");
+        up2 = setup("/player/boy_up_2");
+        down1 = setup("/player/boy_down_1");
+        down2 = setup("/player/boy_down_2");
+        left1 = setup("/player/boy_left_1");
+        left2 = setup("/player/boy_left_2");
+        right1 = setup("/player/boy_right_1");
+        right2 = setup("/player/boy_right_2");
 
-    }
-
-    public BufferedImage setup(String imageName) {
-
-        UtilityTool uTool = new UtilityTool();
-        BufferedImage image = null;
-
-        try {
-
-            image = ImageIO.read(getClass().getResourceAsStream("/player/" + imageName + ".png"));
-            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return image;
     }
 
     public void update() {
@@ -221,7 +205,24 @@ public class Player extends Entity {
                     }
                     break;
             }
+            int x = screenX;
+            int y = screenY;
 
-            g2.drawImage(image, screenX, screenY, null);
+            if (screenX > worldX) {
+                x = worldX;
+            }
+            if (screenY > worldY) {
+                y = worldY;
+            }
+            int rightOffset = gp.screenWidth - screenX;
+            if (rightOffset > gp.worldWidth - worldX) {
+                x = gp.screenWidth - (gp.worldWidth - worldX);
+            }
+            int bottomOffset = gp.screenHeight - screenY;
+            if (bottomOffset > gp.worldHeight - worldY) {
+                y = gp.screenHeight - (gp.worldHeight - worldY);
+            }
+
+            g2.drawImage(image, x, y, null);
         }
     }
