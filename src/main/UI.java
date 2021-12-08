@@ -1,8 +1,6 @@
 package main;
 
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Graphics2D;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
 import java.text.DecimalFormat;
@@ -19,6 +17,7 @@ public class UI {
     public String message = "";
     int messageCounter = 0;
     public boolean gameFinished = false;
+    public String currentDialogue = "";
 
     double playTime;
     DecimalFormat dFormat = new DecimalFormat("#0.00");
@@ -121,6 +120,7 @@ public class UI {
         int y = gp.screenHeight/2;
 
         g2.drawString(text, x, y);
+
     }
     public void drawDialogueScreen() {
 
@@ -128,16 +128,26 @@ public class UI {
         int x = gp.tileSize * 2;
         int y = gp.tileSize / 2;
         int width = gp.screenWidth - (gp.tileSize * 4);
-        int height = gp.tileSize * 5;
+        int height = gp.tileSize * 4;
 
         drawSubWindow(x, y, width, height);
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
+        x += gp.tileSize;
+        y += gp.tileSize;
+        g2.drawString(currentDialogue, x, y);
 
     }
     public void drawSubWindow(int x, int y, int width, int height) {
 
-        Color c = new Color(0, 0, 0);
+        Color c = new Color(0, 0, 0, 150);
         g2.setColor(c);
         g2.fillRoundRect(x, y, width, height, 35, 35);
+
+        c = new Color(255, 255, 255);
+        g2.setColor(c);
+        g2.setStroke(new BasicStroke(5));
+        g2.drawRoundRect(x+5, y+5, width-10, height-10, 25, 25);
 
     }
 

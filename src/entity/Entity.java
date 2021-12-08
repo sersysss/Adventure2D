@@ -34,12 +34,17 @@ public class Entity {
     public int solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
+    String dialogues[] = new String[20];
+    int dialogueIndex = 0;
 
     public Entity(GamePanel gp) {
         this.gp = gp;
     }
 
     public void setAction() {}
+    public void speak() {
+
+    }
     public void update() {
 
         setAction();
